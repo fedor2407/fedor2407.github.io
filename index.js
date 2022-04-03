@@ -258,8 +258,6 @@ let isFirstClick = true;
         if (event.target.className != "cell") {
             return;
         }
-        
-        alert("te");
         if (isFirstClick == true) {
             fi = x;
             fj = y;
