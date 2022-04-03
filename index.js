@@ -15,7 +15,7 @@ function createLine(className){
 
 function createDiv(className){
     var div = document.createElement('div');
-    div.className = "cell";
+    div.className = "cell noselect";
     div.id = cellId++;
     div.style.width = '45px';
     div.style.height = '45px';
@@ -190,6 +190,7 @@ let isFirstClick = true;
     })
     addEventListener("touchstart",event=>{
         d1 = new Date();
+        alert("t");
     })
     addEventListener("mouseup",event=>{
         d2 = new Date();
@@ -201,7 +202,7 @@ let isFirstClick = true;
 
         let clickTime = (d2 - d1) / 1000;
         console.log(clickTime);
-        if (event.target.className != "cell") {
+        if (event.target.className != "cell noselect") {
             return;
         }
         if (isFirstClick == true) {
@@ -255,9 +256,10 @@ let isFirstClick = true;
 
         let clickTime = (d2 - d1) / 1000;
         console.log(clickTime);
-        if (event.target.className != "cell") {
+        if (event.target.className != "cell noselect") {
             return;
         }
+        
         if (isFirstClick == true) {
             fi = x;
             fj = y;
