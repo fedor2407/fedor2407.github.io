@@ -1,4 +1,4 @@
-alert("Выберите сложность и нажмите на "Go");
+alert("Выберите сложность и нажмите на Go");
 let tableSizeX = 30;
 let tableSizeY = 16;
 nomberOfBombs = 99;
