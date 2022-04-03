@@ -190,7 +190,6 @@ let isFirstClick = true;
     })
     addEventListener("touchstart",event=>{
         d1 = new Date();
-        alert("t");
     })
     addEventListener("mouseup",event=>{
         d2 = new Date();
