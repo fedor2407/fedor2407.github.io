@@ -9,6 +9,18 @@ function createLine(className){
     div.className = "row";
     div.id = "row" + String(rowId++);
     return div;
+let tableSizeX = 30;
+let tableSizeY = 16;
+nomberOfBombs = 99;
+const v1 = new Date();
+
+cellId = 1;
+rowId = 1;
+function createLine(className){
+    var div = document.createElement('div');
+    div.className = "row";
+    div.id = "row" + String(rowId++);
+    return div;
 }
 
 function createDiv(className){
@@ -173,50 +185,58 @@ function wincheck() {
 }
 
 let isFirstClick = true;
-addEventListener("mousedown",event=>{
-    if(event.target.className != "cell") {
-        return;
-    }
-    let id = event.target.id;
-    let innerHTML = event.target.innerHTML;
-    let x = getX(id);
-    let y = getY(id);
-    
-    if (event.button == 0){ 
-        if (isFirstClick == false){
-            if (innerHTML != "🚩") event.target.style.backgroundColor = "#a2a2a2";
-            if (innerHTML > 0) {
-                document.getElementById(id).style.color = colorMap.get(Number(innerHTML));
+
+    let d1, d2;
+    addEventListener("mousedown",event=>{
+        d1 = new Date();
+    })
+    addEventListener("mouseup",event=>{
+        d2 = new Date();
+        let clickTime = (d2 - d1) / 1000;
+        console.log(clickTime);
+        if(event.target.className != "cell") {
+            return;
+        }
+        let id = event.target.id;
+        let innerHTML = event.target.innerHTML;
+        let x = getX(id);
+        let y = getY(id);
+        
+        if (clickTime < (1 / 2)){ 
+            if (isFirstClick == false){
+                if (innerHTML != "🚩") event.target.style.backgroundColor = "#a2a2a2";
+                if (innerHTML > 0) {
+                    document.getElementById(id).style.color = colorMap.get(Number(innerHTML));
+                }
+                if (innerHTML == 0){
+                    dfs(x, y);
+                    event.target.style.color = "#a2a2a2"
+                } 
+                if (innerHTML == "x") {
+                    event.target.style.color = "black";
+                    event.target.style.backgroundColor = "red";
+                    alert("К сожалению, вы проиграли(((");
+                }   
             }
-            if (innerHTML == 0){
-                dfs(x, y);
-                event.target.style.color = "#a2a2a2"
+            if (isFirstClick == true && event.target.innerHTML == 0){
+                    dfs(x, y);
+                    isFirstClick = false;
             } 
-            if (innerHTML == "x") {
-                event.target.style.color = "black";
-                event.target.style.backgroundColor = "red";
-                alert("К сожалению, вы проиграли(((");
-            }   
         }
-        if (isFirstClick == true && event.target.innerHTML == 0){
-                dfs(x, y);
-                isFirstClick = false;
-        } 
-    }
-    if (event.button == 1){
-        if (flagBackupValue[id] != -1) {
-            event.target.innerHTML = flagBackupValue[id];
-            event.target.style.color = "grey";
-            flagBackupValue[id] = -1;
+        if (clickTime > (1 / 2)){
+            if (flagBackupValue[id] != -1) {
+                event.target.innerHTML = flagBackupValue[id];
+                event.target.style.color = "grey";
+                flagBackupValue[id] = -1;
+            }
+            else {
+                flagBackupValue[id] = event.target.innerHTML;
+                event.target.innerHTML = "&#128681";
+                console.log("first change", flagBackupValue[id], " was changed to ", "🔎");
+            }
         }
-        else {
-            flagBackupValue[id] = event.target.innerHTML;
-            event.target.innerHTML = "&#128681";
-            console.log("first change", flagBackupValue[id], " was changed to ", "🔎");
-        }
-    }
-    wincheck();
-})
+        wincheck();
+    })
 
 
 go.onclick = function() {
