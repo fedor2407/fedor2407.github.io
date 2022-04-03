@@ -1,6 +1,6 @@
 let tableSizeX = 30;
 let tableSizeY = 16;
-nomberOfBombs = 99;
+nomberOfBombs = 1;
 
 cellId = 1;
 rowId = 1;
