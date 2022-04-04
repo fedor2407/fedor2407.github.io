@@ -184,6 +184,7 @@ function wincheck() {
 
 let isFirstClick = true;
 let clickedCellId;
+let isTouchmove = false;
     let d1, d2;
     addEventListener("mousedown",event=>{
         d1 = new Date();
@@ -259,9 +260,10 @@ let clickedCellId;
         let clickTime = (d2 - d1) / 1000;
         console.log(clickTime);
         console.log("touchend id =", clickedCellId);
-        if (event.target.className != "cell noselect" || clickedCellId != event.target.id) {
+        if (event.target.className != "cell noselect" || isTouchmove == true) {
             return;
         }
+        isTouchmove = false;
         
         if (isFirstClick == true) {
             fi = x;
@@ -303,6 +305,12 @@ let clickedCellId;
         }
         wincheck();
     })
+
+    addEventListener("touchmove",event=>{
+        isTouchmove = true;
+    })
+
+
 
 
 go.onclick = function() {
