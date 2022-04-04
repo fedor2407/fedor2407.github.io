@@ -192,6 +192,7 @@ let clickedCellId;
     addEventListener("touchstart",event=>{
         d1 = new Date();
         clickedCellId = event.target.id;
+        console.log(clickedCellId);
     })
     addEventListener("mouseup",event=>{
         d2 = new Date();
@@ -260,6 +261,7 @@ let clickedCellId;
         if (event.target.className != "cell noselect" || clickedCellId != event.target.id) {
             return;
         }
+        console.log(clickedCellId);
         
         if (isFirstClick == true) {
             fi = x;
