@@ -1,4 +1,4 @@
-alert("Выберите сложность и нажмите на Go touchmove");
+alert("Выберите сложность и нажмите на Go touchmove v2");
 let tableSizeX = 30;
 let tableSizeY = 16;
 nomberOfBombs = 99;
