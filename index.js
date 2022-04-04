@@ -184,7 +184,6 @@ function wincheck() {
 
 let isFirstClick = true;
 let clickedCellId;
-let isTouchmove = false;
     let d1, d2;
     addEventListener("mousedown",event=>{
         d1 = new Date();
@@ -195,7 +194,7 @@ let isTouchmove = false;
         clickedCellId = event.target.id;
         console.log("touchstart id =", clickedCellId);
     })
-    addEventListener("mouseup",event=>{
+    document.body.addEventListener("mouseup",event=>{
         d2 = new Date();
         
         let id = event.target.id;
@@ -205,7 +204,7 @@ let isTouchmove = false;
 
         let clickTime = (d2 - d1) / 1000;
         console.log(clickTime);
-        if (event.target.className != "cell noselect" || clickedCellId != event.target.id) {
+        if (event.target.className != "cell noselect") {
             return;
         }
         if (isFirstClick == true) {
@@ -247,9 +246,9 @@ let isTouchmove = false;
             }
         }
         wincheck();
-    })
+    });
 
-    addEventListener("touchend",event=>{
+    document.body.addEventListener("touchend",event=>{
         d2 = new Date();
         
         let id = event.target.id;
@@ -260,7 +259,7 @@ let isTouchmove = false;
         let clickTime = (d2 - d1) / 1000;
         console.log(clickTime);
         console.log("touchend id =", clickedCellId);
-        if (event.target.className != "cell noselect" || isTouchmove == true) {
+        if (event.target.className != "cell noselect") {
             return;
         }
         isTouchmove = false;
@@ -304,12 +303,8 @@ let isTouchmove = false;
             }
         }
         wincheck();
-    })
+    });
 
-    addEventListener("touchmove",event=>{
-        isTouchmove = true;
-        console.log("touchmove");
-    })
 
 
 
