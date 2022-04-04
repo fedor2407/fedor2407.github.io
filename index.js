@@ -183,13 +183,15 @@ function wincheck() {
 }
 
 let isFirstClick = true;
-
+let clickedCellId;
     let d1, d2;
     addEventListener("mousedown",event=>{
         d1 = new Date();
+        clickedCellId = event.target.id;
     })
     addEventListener("touchstart",event=>{
         d1 = new Date();
+        clickedCellId = event.target.id;
     })
     addEventListener("mouseup",event=>{
         d2 = new Date();
@@ -201,7 +203,7 @@ let isFirstClick = true;
 
         let clickTime = (d2 - d1) / 1000;
         console.log(clickTime);
-        if (event.target.className != "cell noselect") {
+        if (event.target.className != "cell noselect" || clickedCellId != event.target.id) {
             return;
         }
         if (isFirstClick == true) {
@@ -255,7 +257,7 @@ let isFirstClick = true;
 
         let clickTime = (d2 - d1) / 1000;
         console.log(clickTime);
-        if (event.target.className != "cell noselect") {
+        if (event.target.className != "cell noselect" || clickedCellId != event.target.id) {
             return;
         }
         
