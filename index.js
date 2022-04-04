@@ -308,6 +308,7 @@ let isTouchmove = false;
 
     addEventListener("touchmove",event=>{
         isTouchmove = true;
+        console.log("touchmove");
     })
 
 
