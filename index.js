@@ -1,4 +1,4 @@
-alert("Выберите сложность и нажмите на Go");
+alert("Выберите сложность и нажмите на Go touchmove");
 let tableSizeX = 30;
 let tableSizeY = 16;
 nomberOfBombs = 99;
@@ -184,6 +184,7 @@ function wincheck() {
 
 let isFirstClick = true;
 let clickedCellId;
+let isTouchmove = false;
     let d1, d2;
     addEventListener("mousedown",event=>{
         d1 = new Date();
@@ -194,7 +195,7 @@ let clickedCellId;
         clickedCellId = event.target.id;
         console.log("touchstart id =", clickedCellId);
     })
-    document.body.addEventListener("mouseup",event=>{
+    addEventListener("mouseup",event=>{
         d2 = new Date();
         
         let id = event.target.id;
@@ -204,7 +205,7 @@ let clickedCellId;
 
         let clickTime = (d2 - d1) / 1000;
         console.log(clickTime);
-        if (event.target.className != "cell noselect") {
+        if (event.target.className != "cell noselect" || clickedCellId != event.target.id) {
             return;
         }
         if (isFirstClick == true) {
@@ -248,7 +249,7 @@ let clickedCellId;
         wincheck();
     });
 
-    document.body.addEventListener("touchend",event=>{
+    addEventListener("touchend",event=>{
         d2 = new Date();
         
         let id = event.target.id;
@@ -259,7 +260,7 @@ let clickedCellId;
         let clickTime = (d2 - d1) / 1000;
         console.log(clickTime);
         console.log("touchend id =", clickedCellId);
-        if (event.target.className != "cell noselect") {
+        if (event.target.className != "cell noselect" || isTouchmove == true) {
             return;
         }
         isTouchmove = false;
@@ -305,6 +306,10 @@ let clickedCellId;
         wincheck();
     });
 
+    addEventListener("touchmove",event=>{
+        isTouchmove = true;
+        console.log("touchmove");
+    });
 
 
 
