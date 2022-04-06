@@ -1,4 +1,4 @@
-alert("Выберите сложность и нажмите на Go touchmove v2");
+alert("Выберите сложность и нажмите на Go touchmove v3");
 let tableSizeX = 30;
 let tableSizeY = 16;
 nomberOfBombs = 99;
@@ -200,6 +200,7 @@ addEventListener("touchmove",event=>{
         console.log("touchstart id =", clickedCellId);
     })
     addEventListener("mouseup",event=>{
+        console.log("mouseup event");
         d2 = new Date();
         
         let id = event.target.id;
@@ -224,6 +225,7 @@ addEventListener("touchmove",event=>{
         }
         
         if (clickTime < (1 / 3)){ 
+            console.log("clocktime > 0.33");
             if (innerHTML != "🚩") event.target.style.backgroundColor = "#a2a2a2";
             if (innerHTML > 0) {
                 document.getElementById(id).style.color = colorMap.get(Number(innerHTML));
